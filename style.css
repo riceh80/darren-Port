@@ -17,3 +17,27 @@ nav{
     right: 25px;
 
 }
+
+.projects{
+     width: 150px;
+    height: 80px;
+    position: absolute;
+    bottom:  500px;
+    left: 500px;
+}
+
+.aboutMe{
+     width: 150px;
+    height: 80px;
+    position: absolute;
+    bottom:  500px;
+    right: 500px;
+}
+
+.me{
+    font-size: 50px;
+    font-family: cursive;
+    position: absolute;
+    top: 250px;
+    left: 770px;
+}
