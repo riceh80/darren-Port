@@ -1,43 +1,14 @@
 body{
-    background: rgb(160, 162, 255);
-    color: rgb(0, 0, 0);
+    background: rgb(0, 0, 0);
     margin: 0;
 }
-
-nav{
-    background: rgb(181, 188, 250);
-    height: 100px;
+h1{
+    
+    text-align: center;
+    
+    color: rgb(255, 0, 0);
 }
 
-.resumeBTN{
-    width: 150px;
-    height: 80px;
-    position: absolute;
-    top: 10px;
-    right: 25px;
-
-}
-
-.projects{
-     width: 150px;
-    height: 80px;
-    position: absolute;
-    bottom:  500px;
-    left: 500px;
-}
-
-.aboutMe{
-     width: 150px;
-    height: 80px;
-    position: absolute;
-    bottom:  500px;
-    right: 500px;
-}
-
-.me{
-    font-size: 50px;
-    font-family: cursive;
-    position: absolute;
-    top: 250px;
-    left: 770px;
+.masked{
+    
 }
