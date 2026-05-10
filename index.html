@@ -1,11 +1,87 @@
-<html>
+<!doctype html>
+<html lang="en">
     <head>
-    <title> darren domain</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Darren's Domain</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
     <body>
-        <div class="start">
-        <div class = "words"> NETFLIX</div>        
-        </div>
+        <main class="scroll-story" id="scrollStory">
+            <section class="stage">
+                <div class="glow"></div>
+
+                <section class="panel start" data-start="0" data-end="0.25">
+                    <p class="eyebrow">Welcome to</p>
+                    <h1 class="words">Darren's Domain</h1>
+                    <!--<p class="pressAny">Scroll to enter</p>-->
+                </section>
+
+                <section class="panel chapter" data-start="0.25" data-end="0.50">
+                    <p class="eyebrow">Who Am I?</p>
+                    <h2>Darren Hui</h2>
+                    <p class="section-copy">Computer Science Major - Cantonese Asian</p>
+                </section>
+
+                <section class="panel chapter" data-start="0.50" data-end="0.75">
+                    <p class="eyebrow">Projects</p>
+                    <div class="project-list">
+                        <article>
+                            <h3>Valentine Website | Html - JS - CSS</h3>
+                             <p>check for yourself</p> 
+                            <p><a href="https://riceh80.github.io/noob/" target="_blank" rel="noopener noreferrer">https://riceh80.github.io/noob/</a></p>
+        
+                        </article>
+                        <article>
+                            <h3>Turned Based Rouge Card Game - Enemy System | C#</h3>
+                            <p>Created random spawn on Enemy System and enemy logic</p>
+                        </article>
+                         <article>
+                            <h3>Slime Escapist | C#</h3>
+                            <p>Indie Game using slime physic to escape its creators.</p>
+                        </article>
+                         <article>
+                            <h3>Dungeon & Live | Blueprint</h3>
+                             
+                            <p>Survivor game adding in D&D aspect.</p>
+                            <p><a href="https://riceh80.itch.io/dungeon-live" target="_blank" rel="noopener noreferrer">https://riceh80.itch.io/dungeon-live</a></p>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="panel chapter" data-start="0.75" data-end="1">
+                    <p class="eyebrow">What I Use</p>
+                    <div class="tool-list">
+                        <article>
+                            <h3>Languages</h3>
+                            <p>Java, C#, Python, HTML, CSS, JavaScript</p>
+                        </article>
+                        <article>
+                            <h3>Tools</h3>
+                            <p>GitHub, Linux OS, Windows OS</p>
+                        </article>
+                        <article>
+                            <h3>Game Engines</h3>
+                            <p>Unity, GoDot, Unreal Engine 5</p>
+                        </article>
+                        <article>
+                            <h3>Creative</h3>
+                            <p>3D Animations, Sprite Animations, UI functionality</p>
+                        </article>
+                    </div>
+                </section>
+
+            </section>
+        </main>
+
+        <section class="resume-section">
+            <p class="eyebrow">Resume</p>
+            <a class="resume-image-link" href="Darren_Hui_s_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                <img class="resume-preview" src="Darren_Hui_s_Resume.png" alt="Darren Hui Resume">
+            </a>
+            <a class="resume-link" href="Darren_Hui_s_Resume.pdf" download>Download Resume</a>
+        </section>
+
+        <script src="functions.js"></script>
     </body>
 </html>

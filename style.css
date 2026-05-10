@@ -1,14 +1,257 @@
-body{
-    background: rgb(0, 0, 0);
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+* {
+    box-sizing: border-box;
 }
 
-.words{
-    color:red;
-    font-size: 100px;
-    position: static;
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #ffffff; /* Main page background color */
+    color: #000000; /* Default text color */
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.scroll-story {
+    height: 330vh;
+    position: relative;
+}
+
+.stage {
+    min-height: 100vh;
+    position: sticky;
+    top: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.stage::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 50% 36%, rgba(255, 255, 255, 0.22), transparent 25rem), /* Large soft background glow color */
+        linear-gradient(180deg, rgba(255, 255, 255, 0.4), #ffffff 92%); /* Background fade color */
+    opacity: calc(0.45 + (var(--progress, 0) * 0.45));
+    z-index: -2;
+}
+
+.glow {
+    width: min(58vw, 650px);
+    aspect-ratio: 1;
+    position: absolute;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle, rgba(255, 255, 255, 0rgba(255, 255, 255, 0.24) 0.24) 38%, transparent 68%), /* Main moving glow color */
+        radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.45), transparent 24%); /* Bright highlight inside glow */
+    filter: blur(7px);
+    opacity: calc(0.18 + (var(--progress, 0) * 0.22));
+    transform: translateY(calc(var(--progress, 0) * -120px)) scale(calc(0.78 + (var(--progress, 0) * 0.35)));
+    z-index: -1;
+}
+
+.panel {
+    position: absolute;
+    width: min(90vw, 980px);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(80px) scale(0.96);
+    filter: blur(12px);
+    pointer-events: none;
+    transition: opacity 80ms linear, transform 80ms linear, filter 80ms linear;
+    will-change: opacity, transform, filter;
+}
+
+.panel.is-visible {
+    opacity: var(--panel-opacity, 1);
+    transform: translateY(var(--panel-y, 0)) scale(var(--panel-scale, 1));
+    filter: blur(var(--panel-blur, 0));
+    pointer-events: auto;
+}
+
+.eyebrow,
+.pressAny {
+    margin: 0;
+    color: #000000; /* Small label text color */
+    font-size: clamp(0.9rem, 1.5vw, 1.15rem);
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+.words,
+.panel h2 {
+    margin: 0.18em 0 0.14em;
+    color: #000000; /* Big heading text color */
+    font-size: clamp(4rem, 12vw, 9.4rem);
+    line-height: 0.9;
+    letter-spacing: 0;
+    text-shadow: 0 0 70px rgba(255, 184, 77, 0.3); /* Glow behind big heading text */
+}
+
+.panel h2 {
+    font-size: clamp(3.4rem, 9vw, 7.4rem);
+}
+
+.pressAny,
+.section-copy {
+    max-width: 680px;
+    margin: 0 auto;
+    color: #000000; /* Paragraph/supporting text color */
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    line-height: 1.55;
+    text-transform: none;
+}
+
+.project-list,
+.tool-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 1rem;
+    max-width: 760px;
+    margin: 2rem auto 0;
+    text-align: left;
+}
+
+.project-list article,
+.tool-list article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 150px;
+    padding: 1.35rem;
+    border: 1px solid transparent; /* Project/tool card border color */
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.86); /* Project/tool card background color */
+    box-shadow: 0 12px 34px rgba(255, 255, 255, 0.18); /* Project/tool card shadow color */
+    backdrop-filter: blur(18px);
+    opacity: 0;
+    transform: translateY(26px) scale(0.98);
+    transition: opacity 260ms ease, transform 260ms ease;
+}
+
+.panel.is-visible .project-list article,
+.panel.is-visible .tool-list article {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.project-list article:nth-child(2),
+.tool-list article:nth-child(2) {
+    transition-delay: 45ms;
+}
+
+.project-list article:nth-child(3),
+.tool-list article:nth-child(3) {
+    transition-delay: 90ms;
+}
+
+.project-list article:nth-child(4),
+.tool-list article:nth-child(4) {
+    transition-delay: 135ms;
+}
+
+.project-list h3,
+.tool-list h3 {
+    margin: 0 0 0.55rem;
+    color: #000000; /* Project title text color */
+    font-size: 1.15rem;
+}
+
+.project-list p,
+.tool-list p {
+    margin: 0;
+    color: #000000; /* Project description text color */
+    line-height: 1.5;
+}
+
+.project-list p + p,
+.tool-list p + p {
+    margin-top: 0.45rem;
+}
+
+.project-list a {
+    color: #000000; /* Project link text color */
+    font-weight: 800;
+    text-underline-offset: 4px;
+    overflow-wrap: anywhere;
+}
+
+.resume-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    margin-top: 1.6rem;
+    padding: 0 1.2rem;
+    border: 1px solid rgba(247, 244, 237, 0.22); /* Resume button border color */
+    border-radius: 8px;
+    background: #f7f4ed; /* Resume button background color */
+    color: #000000; /* Resume button text color */
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.resume-image-link {
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+.resume-section {
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    min-height: 160vh;
+    padding: 6rem 4vw 8rem;
+    background: #ffffff; /* Resume section background color */
+    color: #000000; /* Resume section text color */
+    text-align: center;
+}
+
+.resume-section h2 {
+    margin: 0;
+    color: #000000; /* Resume section heading color */
+    font-size: clamp(3rem, 9vw, 7rem);
+    line-height: 0.9;
+    letter-spacing: 0;
+}
+
+.resume-preview {
+    display: block;
+    width: min(94vw, 1120px);
+    height: auto;
+    border: 1px solid rgba(247, 244, 237, 0.22); /* Resume preview border color */
+    border-radius: 8px;
+    background: #ffffff; /* Resume preview background color */
+    object-fit: contain;
+}
+
+.resume-link:hover {
+    background: #d7b46d; /* Resume button hover color */
+}
+
+@media (max-width: 700px) {
+    .scroll-story {
+        height: 320vh;
+    }
+
+    .glow {
+        width: 92vw;
+    }
+
+    .words,
+    .panel h2 {
+        font-size: clamp(3.2rem, 16vw, 5rem);
+    }
+
+    .project-list,
+    .tool-list {
+        grid-template-columns: 1fr;
+        margin-top: 1.3rem;
+    }
 }
